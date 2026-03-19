@@ -2,13 +2,51 @@
 <html lang="it">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Portale Demo</title>
   <style>
-    html, body { margin: 0; height: 100%; background: #fff; }
-    #slide { width: 100vw; height: 100vh; object-fit: contain; display: block; }
-    .nav { position: fixed; bottom: 20px; right: 20px; z-index: 10; }
-    button { padding: 10px 16px; font-size: 16px; cursor: pointer; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    body {
+      position: relative;
+    }
+
+    #slide {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: block;
+      background: #fff;
+    }
+
+    .nav {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 10;
+    }
+
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      border: 0;
+      border-radius: 10px;
+      cursor: pointer;
+      background: rgba(120, 120, 120, 0.9);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -28,8 +66,14 @@
     let i = 0;
     const img = document.getElementById("slide");
 
-    function show() { img.src = base + slides[i]; }
-    function nextSlide() { i = (i + 1) % slides.length; show(); }
+    function show() {
+      img.src = base + slides[i];
+    }
+
+    function nextSlide() {
+      i = (i + 1) % slides.length;
+      show();
+    }
 
     show();
   </script>

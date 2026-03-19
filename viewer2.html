@@ -10,6 +10,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html, body {
@@ -33,31 +34,44 @@
       background: #fff;
     }
 
-    .nav {
+    /* area cliccabile invisibile */
+    .tap-next {
       position: fixed;
-      right: 16px;
-      bottom: 16px;
+      right: 0;
+      bottom: 0;
+      width: 35vw;
+      height: 18vh;
       z-index: 1000;
+      background: transparent;
+      border: 0;
+      outline: none;
+      box-shadow: none;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .tap-next:focus,
+    .tap-next:active {
+      outline: none;
+      box-shadow: none;
       background: transparent;
     }
 
-    button {
-      padding: 12px 18px;
-      font-size: 16px;
-      border: none;
-      border-radius: 12px;
-      background: #6f6f6f;   /* pieno, non trasparente */
-      color: #fff;
-      cursor: pointer;
-      box-shadow: none;      /* niente alone */
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    button:focus,
-    button:active {
-      outline: none;
-      box-shadow: none;
+    /* etichetta piccola, senza patina */
+    .hint {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1001;
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 1;
+      padding: 0;
+      background: transparent;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+      pointer-events: none;
+      user-select: none;
     }
   </style>
 </head>
@@ -67,9 +81,8 @@
     <img id="slide" alt="Demo Portale" />
   </div>
 
-  <div class="nav">
-    <button onclick="nextSlide()">Avanti</button>
-  </div>
+  <button class="tap-next" onclick="nextSlide()" aria-label="Avanti"></button>
+  <div class="hint">Avanti</div>
 
   <script>
     const base = "https://michelinafolino.github.io/Test-demo/";
@@ -87,7 +100,7 @@
     function nextSlide() {
       i = (i + 1) % slides.length;
       show();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "auto" });
     }
 
     show();
